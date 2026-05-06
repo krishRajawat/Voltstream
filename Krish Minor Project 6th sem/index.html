@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltStream | Energy Dashboard</title>
+    <link rel="icon" href="6650576.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Icons and Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <h1>VoltStream</h1>
+        <p>Smart Energy Monitor</p>
+    </header>
+
+    <div class="toggle-container">
+        <button class="mode-btn active" id="btn-daily" onclick="setMode('daily')">Daily</button>
+        <button class="mode-btn" id="btn-weekly" onclick="setMode('weekly')">Weekly</button>
+    </div>
+
+    <!-- Quick Stats Card -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <i class="fas fa-bolt"></i>
+            <h3 id="total">0</h3>
+            <p>Units (kWh)</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-indian-rupee-sign"></i>
+            <h3 id="bill">0</h3>
+            <p>Est. Bill</p>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="chart-container">
+        <canvas id="energyChart"></canvas>
+    </div>
+
+    <!-- Room Controls -->
+    <section class="rooms-section">
+        <h2>Room Control</h2>
+        <div class="rooms-grid" id="rooms-list">
+            <!-- Room Item -->
+            <div class="room-card" id="card-bedroom">
+                <div class="room-info">
+                    <i class="fas fa-bed"></i>
+                    <span>Bedroom</span>
+                </div>
+                <input type="range" min="0" max="2000" value="500" class="slider" oninput="updateUI()" id="bedroom">
+                <div class="room-footer">
+                    <span class="power-val">500W</span>
+                    <label class="switch">
+                        <input type="checkbox" checked onclick="toggleRoom('bedroom')">
+                        <span class="slider-round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="room-card" id="card-kitchen">
+                <div class="room-info">
+                    <i class="fas fa-utensils"></i>
+                    <span>Kitchen</span>
+                </div>
+                <input type="range" min="0" max="3000" value="800" class="slider" oninput="updateUI()" id="kitchen">
+                <div class="room-footer">
+                    <span class="power-val">800W</span>
+                    <label class="switch">
+                        <input type="checkbox" checked onclick="toggleRoom('kitchen')">
+                        <span class="slider-round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Add more rooms here following the same pattern -->
+             <div class="room-card" id="card-drawing">
+                <div class="room-info">
+                    <i class="fas fa-couch"></i>
+                    <span>Living Room</span>
+                </div>
+                <input type="range" min="0" max="2500" value="700" class="slider" oninput="updateUI()" id="drawing">
+                <div class="room-footer">
+                    <span class="power-val">700W</span>
+                    <label class="switch">
+                        <input type="checkbox" checked onclick="toggleRoom('drawing')">
+                        <span class="slider-round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Insights -->
+    <div class="insights-card">
+        <h3><i class="fas fa-robot"></i> AI Suggestions</h3>
+        <ul id="suggestions">
+            <li>Adjust sliders to see energy insights.</li>
+        </ul>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
